@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import { Test, console2 } from "forge-std/Test.sol";
-import { Module } from "../src/Module.sol";
+import { SanctionedHat } from "../src/SanctionedHat.sol";
 import { Deploy, DeployPrecompiled } from "../script/Deploy.s.sol";
 import {
   HatsModuleFactory, IHats, deployModuleInstance, deployModuleFactory
@@ -20,7 +20,7 @@ contract ModuleTest is Deploy, Test {
   uint256 public BLOCK_NUMBER = 17_671_864; // deployment block for Hats.sol
   IHats public HATS = IHats(0x3bc1A0Ad72417f2d411118085256fC53CBdDd137); // v1.hatsprotocol.eth
   HatsModuleFactory public factory;
-  Module public instance;
+  SanctionedHat public instance;
   bytes public otherImmutableArgs;
   bytes public initArgs;
   uint256 public hatId;
@@ -53,7 +53,7 @@ contract WithInstanceTest is ModuleTest {
     initArgs = abi.encode();
 
     // deploy an instance of the module
-    instance = Module(deployModuleInstance(factory, address(implementation), hatId, otherImmutableArgs, initArgs));
+    instance = SanctionedHat(deployModuleInstance(factory, address(implementation), hatId, otherImmutableArgs, initArgs));
   }
 }
 
