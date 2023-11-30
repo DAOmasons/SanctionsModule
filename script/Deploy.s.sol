@@ -10,7 +10,7 @@ contract Deploy is Script {
 
   // default values
   bool internal _verbose = true;
-  string internal _version = "1.0.1"; // increment this with each new deployment
+  string internal _version = "1.0.2"; // increment this with each new deployment
 
   /// @dev Override default values, if desired.
   function prepare(bool verbose, string memory version) public {
@@ -35,7 +35,7 @@ contract Deploy is Script {
     vm.startBroadcast(deployer());
 
     // Deploy the SanctionedHat contract
-    implementation = new SanctionsModule{ salt: SALT}("1.0.1");
+    implementation = new SanctionsModule{ salt: SALT}("1.0.2");
 
     vm.stopBroadcast();
 
@@ -51,7 +51,7 @@ contract DeployPrecompiled is Deploy {
         vm.startBroadcast(deployer());
 
         // Encode the constructor argument for SanctionedHat
-        bytes memory args = abi.encode("1.0.1" /* Replace with your desired version string */);
+        bytes memory args = abi.encode("1.0.2" /* Replace with your desired version string */);
 
         /// @dev Load and deploy pre-compiled ir-optimized bytecode.
         implementation = SanctionsModule(deployCode("optimized-out/SanctionsModule.sol/SanctionsModule.json", args));

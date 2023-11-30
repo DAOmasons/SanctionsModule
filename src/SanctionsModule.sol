@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 // Made with love by boiler @ DAO Masons
 
 pragma solidity ^0.8.19;
