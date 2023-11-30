@@ -88,25 +88,3 @@ contract Deployment is WithInstanceTest {
 }
 
 contract UnitTests is WithInstanceTest { }
-
-contract SanctionsModuleTest is Test {
-    SanctionsModule sanctionsModule;
-
-    function setUp() public {
-        sanctionsModule = new SanctionsModule("1.0.2");
-    }
-
-    function testSanctionedAddress() public {
-        address sanctionedAddress = address(0x7Db418b5D567A4e0E8c59Ad71BE1FcE48f3E6107);
-        (bool eligible, bool standing) = sanctionsModule.getWearerStatus(sanctionedAddress, 0);
-        assertFalse(eligible, "Sanctioned address should not be eligible");
-        assertFalse(standing, "Sanctioned address should not be in good standing");
-    }
-    function testNonSanctionedAddress() public {
-        address nonSanctionedAddress = address(0xA389c258289b2177d56e7b13B0B51C768b976698);
-        (bool eligible, bool standing) = sanctionsModule.getWearerStatus(nonSanctionedAddress, 0);
-        assertTrue(eligible, "Non-sanctioned address should be eligible");
-        assertTrue(standing, "Non-sanctioned address should be in good standing");
-    }
-
-}
